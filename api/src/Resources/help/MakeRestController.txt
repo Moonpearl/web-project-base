@@ -1,0 +1,5 @@
+The <info>%command.name%</info> command generates a new Rest controller class bound to an entity class.
+
+<info>php %command.full_name% EntityName</info>
+
+If the argument is missing, the command will ask for the entity name interactively.
