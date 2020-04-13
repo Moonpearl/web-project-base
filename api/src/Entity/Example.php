@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use JsonSerializable;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
@@ -32,12 +33,24 @@ class Example
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\ExampleCategory", inversedBy="examples")
+     * @JoinColumn(onDelete="CASCADE")
      */
     private $category;
+
+    public function __construct() {
+        $this->setCreatedAt(new \DateTime());
+    }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getName(): ?string
