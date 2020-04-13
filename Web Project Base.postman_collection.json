@@ -1,0 +1,381 @@
+{
+	"info": {
+		"_postman_id": "50a10fde-b77c-42e8-b443-084d3789f4c4",
+		"name": "Web Project Base",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Examples",
+			"item": [
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/examples",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"examples"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All (with details)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/examples/details",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"examples",
+								"details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/examples/{{exampleId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"examples",
+								"{{exampleId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "093a332c-9bf1-4921-a14d-28e56f407039",
+								"exec": [
+									"const jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"exampleId\", jsonData.data.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"My test example\",\n    \"category\": {\n        \"id\": 18\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/examples/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"examples",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"My test example modified\",\n    \"category\": {\n        \"id\": 20\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/examples/{{exampleId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"examples",
+								"{{exampleId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7697a257-0f77-47ea-baa6-d667b001eba8",
+								"exec": [
+									"postman.setEnvironmentVariable(\"exampleId\", postman.getEnvironmentVariable(\"exampleId\") - 1);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/examples/{{exampleId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"examples",
+								"{{exampleId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "81301258-9225-4189-9af9-6fccb2355b53",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4d40aa4d-b9fa-4402-8b43-9dacc43857e5",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Example Categories",
+			"item": [
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/example-categories",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"example-categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/example-categories/{{exampleCategoryId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"example-categories",
+								"{{exampleCategoryId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "093a332c-9bf1-4921-a14d-28e56f407039",
+								"exec": [
+									"const jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"exampleCategoryId\", jsonData.data.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"My test category\",\n    \"examples\": [\n    \t{ \"id\": 30 }\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/example-categories/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"example-categories",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"My test category modified\",\n    \"examples\": [\n    \t{ \"id\": 31 },\n    \t{ \"id\": 32 },\n    \t{ \"id\": 33 }\n\t]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/example-categories/{{exampleCategoryId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"example-categories",
+								"{{exampleCategoryId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7697a257-0f77-47ea-baa6-d667b001eba8",
+								"exec": [
+									"postman.setEnvironmentVariable(\"exampleCategoryId\", postman.getEnvironmentVariable(\"exampleCategoryId\") - 1);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/example-categories/{{exampleCategoryId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"example-categories",
+								"{{exampleCategoryId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "81301258-9225-4189-9af9-6fccb2355b53",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "4d40aa4d-b9fa-4402-8b43-9dacc43857e5",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "API Info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a8e1c550-2be7-47cc-8a7c-66b4663698db",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d93f9f95-5401-47fb-8b7c-c28f52b46c42",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
